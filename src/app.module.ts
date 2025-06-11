@@ -5,12 +5,9 @@ import { TodoModule } from './todo/todo.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'todo',
+      type: 'postgres',
+      ssl: { rejectUnauthorized: false },
+      url: process.env.DATABASE_URL,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
